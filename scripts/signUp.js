@@ -10,11 +10,15 @@ document.addEventListener("DOMContentLoaded", () => {
     const email_address = emailElement.value;
     const password = passwordElement.value;
 
-    try {
-      saveSignUpDetailsToDB(full_name, email_address, password);
-      console.log("sign up successfull");
-    } catch (error) {
-      console.error("error signing up", error.message);
+    if (full_name == "" || email_address == "" || password == "") {
+      alert("input fields cannot be empty");
+    } else {
+      try {
+        saveSignUpDetailsToDB(full_name, email_address, password);
+        console.log("sign up successfull");
+      } catch (error) {
+        console.error("error signing up", error.message);
+      }
     }
   });
 });

@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Login</title>
     <link rel="stylesheet" href="styles/loginSignUp.css" />
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.0.0/dist/umd/supabase.min.js"></script>
   </head>
   <body>
     <div class="main">
@@ -19,21 +20,33 @@
       <form action="">
         <div class="form-group">
           <label for="emailAddress">Email addres</label>
-          <input type="text" id="emailAddress" class="form-input" required />
+          <input
+            type="text"
+            id="emailAddress"
+            class="form-input email-address"
+            required
+          />
         </div>
 
         <div class="form-group">
           <label for="password">Password</label>
-          <input type="password" id="password" class="form-input" required />
+          <input
+            type="password"
+            id="password"
+            class="form-input password"
+            required
+          />
         </div>
 
         <div class="checkbox">
-          <input type="checkbox" name="" id="remember" required />
+          <input type="checkbox" name="" id="remember" />
           <label for="remember">Remember me</label>
         </div>
 
-        <button type="submit">Sign in</button>
+        <button type="submit" class="sign-in-button">Sign in</button>
       </form>
     </div>
+
+    <script src="scripts/login.js" type="module"></script>
   </body>
 </html>

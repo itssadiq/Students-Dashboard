@@ -17,3 +17,14 @@ export async function saveSignUpDetailsToDB(
     throw error;
   }
 }
+
+export async function fetchUserDetailsFromDB() {
+  const { data, error } = await supabase.from("sign_up_details").select();
+
+  if (error) {
+    throw error;
+  }
+
+  const loginDetails = data;
+  return loginDetails;
+}
