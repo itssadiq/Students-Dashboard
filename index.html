@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Sign up</title>
     <link rel="stylesheet" href="styles/loginSignUp.css" />
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.0.0/dist/umd/supabase.min.js"></script>
   </head>
   <body>
     <div class="main">
@@ -21,17 +22,32 @@
       <form action="">
         <div class="form-group">
           <label for="fullName">Full Name</label>
-          <input type="text" id="fullName" class="form-input" required />
+          <input
+            type="text"
+            id="fullName"
+            class="form-input full-name"
+            required
+          />
         </div>
 
         <div class="form-group">
           <label for="emailAddress">Email addres</label>
-          <input type="text" id="emailAddress" class="form-input" required />
+          <input
+            type="text"
+            id="emailAddress"
+            class="form-input email"
+            required
+          />
         </div>
 
         <div class="form-group">
           <label for="password">Password</label>
-          <input type="password" id="password" class="form-input" required />
+          <input
+            type="password"
+            id="password"
+            class="form-input password"
+            required
+          />
         </div>
 
         <div class="form-group">
@@ -51,8 +67,11 @@
           >
         </div>
 
-        <button type="submit">Sign up</button>
+        <button type="submit" class="sign-up-button">Sign up</button>
       </form>
     </div>
+
+    <script src="backend/database.js" type="module"></script>
+    <script src="scripts/signUp.js" type="module"></script>
   </body>
 </html>

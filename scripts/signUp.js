@@ -1,0 +1,20 @@
+import { saveSignUpDetailsToDB } from "../backend/database.js";
+
+document.addEventListener("DOMContentLoaded", () => {
+  document.querySelector(".sign-up-button").addEventListener("click", () => {
+    const nameElement = document.querySelector(".full-name");
+    const emailElement = document.querySelector(".email");
+    const passwordElement = document.querySelector(".password");
+
+    const full_name = nameElement.value;
+    const email_address = emailElement.value;
+    const password = passwordElement.value;
+
+    try {
+      saveSignUpDetailsToDB(full_name, email_address, password);
+      console.log("sign up successfull");
+    } catch (error) {
+      console.error("error signing up", error.message);
+    }
+  });
+});
