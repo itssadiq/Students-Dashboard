@@ -66,3 +66,14 @@ export async function saveApplicationToDB(
     throw error;
   }
 }
+
+export async function fetchApplicationDetailFromDB() {
+  const { data, error } = await supabase.from("students-applications").select();
+
+  if (error) {
+    throw error;
+  }
+
+  const applications = data;
+  return applications;
+}

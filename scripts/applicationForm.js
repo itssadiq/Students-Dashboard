@@ -1,6 +1,7 @@
 import { saveApplicationToDB } from "../backend/database.js";
+import { fetchApplicationDetailFromDB } from "../backend/database.js";
 
-document.addEventListener("DOMContentLoaded", () => {
+document.addEventListener("DOMContentLoaded", async () => {
   const fullNameEl = document.getElementById("fullName");
   const fatherNameEl = document.getElementById("fatherName");
   const emailEl = document.getElementById("email");
@@ -14,6 +15,8 @@ document.addEventListener("DOMContentLoaded", () => {
   const instituteEl = document.getElementById("institute");
   const program1El = document.getElementById("program1");
   const program2El = document.getElementById("program2");
+
+  const applications = await fetchApplicationDetailFromDB();
 
   const User = JSON.parse(localStorage.getItem("User"));
 
@@ -38,25 +41,31 @@ document.addEventListener("DOMContentLoaded", () => {
       const program_1 = program1El.value;
       const program_2 = program2El.value;
 
-      try {
-        saveApplicationToDB(
-          id,
-          full_name,
-          father_name,
-          email,
-          phone_number,
-          dob,
-          gender,
-          address,
-          city,
-          qualification,
-          passing_year,
-          institute_name,
-          program_1,
-          program_2
-        );
-      } catch (error) {
-        console.error("Error submitting data:", error);
-      }
+      applications.forEach((application) => {
+        if (application.id === id) {
+          console.log("Application already submitted");
+        } else {
+          try {
+            saveApplicationToDB(
+              id,
+              full_name,
+              father_name,
+              email,
+              phone_number,
+              dob,
+              gender,
+              address,
+              city,
+              qualification,
+              passing_year,
+              institute_name,
+              program_1,
+              program_2
+            );
+          } catch (error) {
+            console.error("Error submitting data:", error);
+          }
+        }
+      });
     });
 });
