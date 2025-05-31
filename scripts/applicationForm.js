@@ -62,6 +62,8 @@ document.addEventListener("DOMContentLoaded", async () => {
               program_1,
               program_2
             );
+
+            window.location.href = "./submissionSuccess.html";
           } catch (error) {
             console.error("Error submitting data:", error);
           }

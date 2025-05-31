@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Application Submitted</title>
     <link rel="stylesheet" href="styles/submissionSuccess.css" />
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.0.0/dist/umd/supabase.min.js"></script>
   </head>
   <body>
     <div class="main-container">
@@ -31,19 +32,19 @@
         <h2 class="summary-heading">Application Summary</h2>
         <div class="summary-row">
           <strong>Application ID:</strong>
-          <span>APP-2023-78945</span>
+          <span class="application-id">APP-2023-78945</span>
         </div>
         <div class="summary-row">
           <strong>Submitted on:</strong>
-          <span>5/17/2025</span>
+          <span class="current-date">5/17/2025</span>
         </div>
         <div class="summary-row">
-          <strong>Program:</strong>
-          <span>Computer Science</span>
+          <strong>Program1:</strong>
+          <span class="program1">Computer Science</span>
         </div>
         <div class="summary-row">
-          <strong>Starting Term:</strong>
-          <span>Fall 2023</span>
+          <strong>Program2:</strong>
+          <span class="program2">Computer Science</span>
         </div>
       </div>
       <p class="confirmation-message">
@@ -51,8 +52,10 @@
         Please check your inbox and spam folder.
       </p>
       <div class="button-group">
-        <button class="primary-button">GO TO DASHBOARD</button>
+        <button class="primary-button dashboard-button">GO TO DASHBOARD</button>
       </div>
     </div>
+
+    <script src="scripts/submissionSuccess.js" type="module"></script>
   </body>
 </html>
