@@ -7,7 +7,8 @@ document.addEventListener("DOMContentLoaded", async () => {
   const passwordElement = document.querySelector(".password");
   loginDetails = await fetchUserDetailsFromDB();
 
-  buttonElement.addEventListener("click", async () => {
+  buttonElement.addEventListener("click", async (event) => {
+    event.preventDefault();
     try {
       userLoginIn(emailElement, passwordElement);
     } catch (error) {
@@ -16,7 +17,7 @@ document.addEventListener("DOMContentLoaded", async () => {
   });
 });
 
-function userLoginIn(emailElement, passwordElement) {
+async function userLoginIn(emailElement, passwordElement) {
   const email = emailElement.value;
   const password = passwordElement.value;
 
@@ -28,12 +29,13 @@ function userLoginIn(emailElement, passwordElement) {
     loginDetails.forEach((user) => {
       if (email === user.email_address) {
         matchingUser = user;
+        localStorage.setItem("User", JSON.stringify(matchingUser));
       }
     });
 
     if (matchingUser) {
       if (matchingUser.password === password) {
-        alert("Login successfull");
+        window.location.href = "./studentsDashboard.html";
       } else {
         alert("worng password");
       }

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="" />
+    <link rel="stylesheet" href="styles/studentsDashboard.css" />
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.0.0/dist/umd/supabase.min.js"></script>
+  </head>
+  <body>
+    <div class="main">
+      <div class="navbar">
+        <h2>Student Dashboard</h2>
+        <h4 class="js-userName">User Name</h4>
+      </div>
+
+      <div class="dashboard-body">
+        <div class="status">
+          <h4>Application Status</h4>
+          <h2>Pending</h2>
+          <p>Last updated: May 30,2025</p>
+        </div>
+        <div class="status">
+          <h4>Upcoming Deadlines</h4>
+          <h2>3</h2>
+          <p>Next: Document submission (2 days)</p>
+        </div>
+        <div class="status">
+          <h4>Messages</h4>
+          <h2>2</h2>
+          <p>1 unread from admission office</p>
+        </div>
+      </div>
+
+      <div class="events">
+        <h3>Upcoming Events</h3>
+
+        <div class="event">
+          <div class="event-heading">
+            <h4>Admissions open</h4>
+            <p>Submit application to apply</p>
+          </div>
+          <div class="event-action">
+            <button class="apply-now js-apply-button">
+              <a href="applicationForm.html" target="_blank">Apply Now</a>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="scripts/studentsDashboard.js" type="module"></script>
+  </body>
+</html>
