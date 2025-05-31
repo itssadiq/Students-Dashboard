@@ -28,3 +28,41 @@ export async function fetchUserDetailsFromDB() {
   const loginDetails = data;
   return loginDetails;
 }
+
+export async function saveApplicationToDB(
+  id,
+  full_name,
+  father_name,
+  email,
+  phone_number,
+  dob,
+  gender,
+  address,
+  city,
+  qualification,
+  passing_year,
+  institute_name,
+  program_1,
+  program_2
+) {
+  const { error } = await supabase.from("students-applications").insert({
+    id,
+    full_name,
+    father_name,
+    email,
+    phone_number,
+    dob,
+    gender,
+    address,
+    city,
+    qualification,
+    passing_year,
+    institute_name,
+    program_1,
+    program_2,
+  });
+
+  if (error) {
+    throw error;
+  }
+}

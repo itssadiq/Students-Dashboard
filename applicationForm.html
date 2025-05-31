@@ -9,6 +9,7 @@
       href="styles/applicationform.css
     "
     />
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.0.0/dist/umd/supabase.min.js"></script>
   </head>
   <body>
     <div class="main">
@@ -143,11 +144,13 @@
           </div>
         </div>
         <div class="submit">
-          <button type="submit" class="submit-button">
+          <button type="submit" class="submit-button js-submit-button">
             Submit Application
           </button>
         </div>
       </form>
     </div>
+
+    <script src="scripts/applicationForm.js" type="module"></script>
   </body>
 </html>
