@@ -2,8 +2,9 @@ import { fetchApplicationDetailFromDB } from "../backend/database.js";
 
 document.addEventListener("DOMContentLoaded", async () => {
   const applications = await fetchApplicationDetailFromDB();
+  console.log(applications);
+
   const User = JSON.parse(localStorage.getItem("User"));
-  let userApplication;
 
   applications.forEach((application) => {
     if (User.id === application.id) {
