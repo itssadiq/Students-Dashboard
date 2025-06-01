@@ -32,4 +32,8 @@ document.addEventListener("DOMContentLoaded", async () => {
       ".application-date"
     ).innerHTML = `Applied On: ${formattedDate}`;
   }
+
+  document.getElementById("logout").addEventListener("change", () => {
+    window.location.href = "./studentsLogin.html";
+  });
 });
