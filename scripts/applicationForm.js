@@ -41,33 +41,30 @@ document.addEventListener("DOMContentLoaded", async () => {
       const program_1 = program1El.value;
       const program_2 = program2El.value;
 
-      applications.forEach((application) => {
-        if (application.id === id) {
-          console.log("Application already submitted");
-        } else {
-          try {
-            saveApplicationToDB(
-              id,
-              full_name,
-              father_name,
-              email,
-              phone_number,
-              dob,
-              gender,
-              address,
-              city,
-              qualification,
-              passing_year,
-              institute_name,
-              program_1,
-              program_2
-            );
+      console.log(applications);
 
-            window.location.href = "./submissionSuccess.html";
-          } catch (error) {
-            console.error("Error submitting data:", error);
-          }
-        }
-      });
+      try {
+        console.log("successfull");
+        saveApplicationToDB(
+          id,
+          full_name,
+          father_name,
+          email,
+          phone_number,
+          dob,
+          gender,
+          address,
+          city,
+          qualification,
+          passing_year,
+          institute_name,
+          program_1,
+          program_2
+        );
+
+        window.location.href = "./submissionSuccess.html";
+      } catch (error) {
+        console.error("Error submitting data:", error);
+      }
     });
 });
