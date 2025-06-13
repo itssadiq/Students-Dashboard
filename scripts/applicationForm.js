@@ -25,7 +25,7 @@ document.addEventListener("DOMContentLoaded", async () => {
   document
     .querySelector(".js-submit-button")
     .addEventListener("click", (event) => {
-      event.preventDefault();
+      // event.preventDefault();
 
       const full_name = fullNameEl.value;
       const father_name = fatherNameEl.value;
