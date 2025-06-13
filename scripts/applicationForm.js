@@ -22,27 +22,26 @@ document.addEventListener("DOMContentLoaded", async () => {
 
   const id = User.id;
 
-  document
-    .querySelector(".js-submit-button")
-    .addEventListener("click", (event) => {
-      event.preventDefault();
+  document.querySelector("form").addEventListener("submit", (event) => {
+    event.preventDefault();
 
-      const full_name = fullNameEl.value;
-      const father_name = fatherNameEl.value;
-      const email = emailEl.value;
-      const phone_number = phoneEl.value;
-      const dob = dobEl.value;
-      const gender = genderEl.value;
-      const address = addressEl.value;
-      const city = cityEl.value;
-      const qualification = educationEl.value;
-      const passing_year = passingYearEl.value;
-      const institute_name = instituteEl.value;
-      const program_1 = program1El.value;
-      const program_2 = program2El.value;
+    const form = event.target;
 
-      console.log(applications);
+    const full_name = fullNameEl.value;
+    const father_name = fatherNameEl.value;
+    const email = emailEl.value;
+    const phone_number = phoneEl.value;
+    const dob = dobEl.value;
+    const gender = genderEl.value;
+    const address = addressEl.value;
+    const city = cityEl.value;
+    const qualification = educationEl.value;
+    const passing_year = passingYearEl.value;
+    const institute_name = instituteEl.value;
+    const program_1 = program1El.value;
+    const program_2 = program2El.value;
 
+    if (form.checkValidity()) {
       try {
         console.log("successfull");
         saveApplicationToDB(
@@ -66,5 +65,8 @@ document.addEventListener("DOMContentLoaded", async () => {
       } catch (error) {
         console.error("Error submitting data:", error);
       }
-    });
+    } else {
+      form.reportValidity();
+    }
+  });
 });
