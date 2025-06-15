@@ -24,9 +24,6 @@ async function userLogin(emailElement, passwordElement) {
 
   let matchingUser;
 
-  // if (email == "" || password == "") {
-  //   alert("Inputs cannot be empty");
-  // } else {
   loginDetails.forEach((user) => {
     if (email === user.email_address) {
       matchingUser = user;
@@ -40,6 +37,5 @@ async function userLogin(emailElement, passwordElement) {
     } else {
       alert("worng password");
     }
-    // }
   }
 }

@@ -12,15 +12,11 @@ document.addEventListener("DOMContentLoaded", () => {
     const email_address = emailElement.value;
     const password = passwordElement.value;
 
-    // if (full_name == "" || email_address == "" || password == "") {
-    //   alert("input fields cannot be empty");
-    // } else {
     try {
       saveSignUpDetailsToDB(full_name, email_address, password);
       window.location.href = "./studentsLogin.html";
     } catch (error) {
       console.error("error signing up", error.message);
     }
-    // }
   });
 });
