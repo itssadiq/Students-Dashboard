@@ -1,20 +1,34 @@
-import { fetchApplicationDetailFromDB } from "../backend/database.js";
+import {
+  fetchApplicationDetailFromDB,
+  checkAuthentication,
+  signOutUser,
+} from "../backend/database.js";
 
 document.addEventListener("DOMContentLoaded", async () => {
   const applications = await fetchApplicationDetailFromDB();
 
-  const User = JSON.parse(localStorage.getItem("User"));
+  let user;
 
-  document.querySelector(".js-userName").innerHTML = User.full_name;
+  try {
+    const data = await checkAuthentication();
+    if (data.session == null) {
+      window.location.href = "studentsLogin.html";
+    }
+    user = data.session.user.user_metadata;
+  } catch (error) {
+    console.log("error", error.message);
+  }
 
-  const userID = User.id;
+  document.querySelector(".js-userName").innerHTML = user.full_name;
+
+  // const userID = User.id;
   let userApplication;
 
-  applications.forEach((application) => {
-    if (userID === application.id) {
-      userApplication = application;
-    }
-  });
+  // applications.forEach((application) => {
+  //   if (userID === application.id) {
+  //     userApplication = application;
+  //   }
+  // });
 
   if (userApplication) {
     const applicationDate = userApplication.created_at;
@@ -33,7 +47,12 @@ document.addEventListener("DOMContentLoaded", async () => {
     ).innerHTML = `Applied On: ${formattedDate}`;
   }
 
-  document.getElementById("logout").addEventListener("change", () => {
-    window.location.href = "./studentsLogin.html";
+  document.getElementById("logout").addEventListener("change", async () => {
+    try {
+      const data = await signOutUser();
+      window.location.href = "./studentsLogin.html";
+    } catch (error) {
+      console.log("error", error.message);
+    }
   });
 });

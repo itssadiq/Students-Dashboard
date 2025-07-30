@@ -1,7 +1,7 @@
 import { saveSignUpDetailsToDB } from "../backend/database.js";
 
 document.addEventListener("DOMContentLoaded", () => {
-  document.querySelector("form").addEventListener("submit", (event) => {
+  document.querySelector("form").addEventListener("submit", async (event) => {
     event.preventDefault();
 
     const nameElement = document.querySelector(".full-name");
@@ -13,7 +13,12 @@ document.addEventListener("DOMContentLoaded", () => {
     const password = passwordElement.value;
 
     try {
-      saveSignUpDetailsToDB(full_name, email_address, password);
+      const data = await saveSignUpDetailsToDB(
+        full_name,
+        email_address,
+        password
+      );
+
       window.location.href = "./studentsLogin.html";
     } catch (error) {
       console.error("error signing up", error.message);

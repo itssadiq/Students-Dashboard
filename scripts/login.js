@@ -22,8 +22,6 @@ async function userLogin(emailElement, passwordElement) {
   try {
     loginDetails = await signInUser(email, password);
 
-    console.log(loginDetails.session);
-
     if (loginDetails.session) {
       window.location.href = "studentsdashboard.html";
     }

@@ -16,7 +16,7 @@ export async function saveSignUpDetailsToDB(full_name, email, password) {
   });
 
   if (data) {
-    console.log(data);
+    return data;
   }
 
   if (error) {
@@ -84,4 +84,22 @@ export async function fetchApplicationDetailFromDB() {
 
   const applications = data;
   return applications;
+}
+
+export async function checkAuthentication() {
+  const { data, error } = await supabase.auth.getSession();
+
+  if (error) {
+    throw error;
+  } else {
+    return data;
+  }
+}
+
+export async function signOutUser() {
+  const { error } = await supabase.auth.signOut();
+
+  if (error) {
+    throw error;
+  }
 }
