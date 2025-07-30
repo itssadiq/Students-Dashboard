@@ -1,5 +1,7 @@
-import { saveApplicationToDB } from "../backend/database.js";
-import { fetchApplicationDetailFromDB } from "../backend/database.js";
+import {
+  saveApplicationToDB,
+  fetchApplicationDetailFromDB,
+} from "../backend/database.js";
 
 document.addEventListener("DOMContentLoaded", async () => {
   const fullNameEl = document.getElementById("fullName");
@@ -15,8 +17,6 @@ document.addEventListener("DOMContentLoaded", async () => {
   const instituteEl = document.getElementById("institute");
   const program1El = document.getElementById("program1");
   const program2El = document.getElementById("program2");
-
-  const applications = await fetchApplicationDetailFromDB();
 
   const User = JSON.parse(localStorage.getItem("User"));
 
