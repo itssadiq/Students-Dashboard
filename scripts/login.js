@@ -1,12 +1,10 @@
-import { fetchUserDetailsFromDB } from "../backend/database.js";
+import { signInUser } from "../backend/database.js";
 
 let loginDetails = [];
 document.addEventListener("DOMContentLoaded", async () => {
-  const buttonElement = document.querySelector(".sign-in-button");
   const emailElement = document.querySelector(".email-address");
   const passwordElement = document.querySelector(".password");
   const form = document.querySelector("form");
-  loginDetails = await fetchUserDetailsFromDB();
 
   form.addEventListener("submit", async (event) => {
     event.preventDefault();
@@ -21,25 +19,15 @@ document.addEventListener("DOMContentLoaded", async () => {
 async function userLogin(emailElement, passwordElement) {
   const email = emailElement.value;
   const password = passwordElement.value;
+  try {
+    loginDetails = await signInUser(email, password);
 
-  let matchingUser;
+    console.log(loginDetails.session);
 
-  // if (email == "" || password == "") {
-  //   alert("Inputs cannot be empty");
-  // } else {
-  loginDetails.forEach((user) => {
-    if (email === user.email_address) {
-      matchingUser = user;
-      localStorage.setItem("User", JSON.stringify(matchingUser));
+    if (loginDetails.session) {
+      window.location.href = "studentsdashboard.html";
     }
-  });
-
-  if (matchingUser) {
-    if (matchingUser.password === password) {
-      window.location.href = "./studentsDashboard.html";
-    } else {
-      alert("worng password");
-    }
-    // }
+  } catch (error) {
+    console.log("error", error.message);
   }
 }

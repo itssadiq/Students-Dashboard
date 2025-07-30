@@ -4,29 +4,37 @@ const supabaseKey =
 
 const supabase = window.supabase.createClient(supabaseUrl, supabaseKey);
 
-export async function saveSignUpDetailsToDB(
-  full_name,
-  email_address,
-  password
-) {
-  const { error } = await supabase
-    .from("sign_up_details")
-    .insert({ full_name, email_address, password });
+export async function saveSignUpDetailsToDB(full_name, email, password) {
+  const { data, error } = await supabase.auth.signUp({
+    email,
+    password,
+    options: {
+      data: {
+        full_name,
+      },
+    },
+  });
+
+  if (data) {
+    console.log(data);
+  }
 
   if (error) {
     throw error;
   }
 }
 
-export async function fetchUserDetailsFromDB() {
-  const { data, error } = await supabase.from("sign_up_details").select();
+export async function signInUser(email, password) {
+  const { data, error } = await supabase.auth.signInWithPassword({
+    email,
+    password,
+  });
 
   if (error) {
     throw error;
+  } else {
+    return data;
   }
-
-  const loginDetails = data;
-  return loginDetails;
 }
 
 export async function saveApplicationToDB(
