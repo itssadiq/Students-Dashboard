@@ -5,30 +5,31 @@ import {
 } from "../backend/database.js";
 
 document.addEventListener("DOMContentLoaded", async () => {
-  const applications = await fetchApplicationDetailFromDB();
-
   let user;
 
   try {
     const data = await checkAuthentication();
+
     if (data.session == null) {
       window.location.href = "studentsLogin.html";
     }
-    user = data.session.user.user_metadata;
+    user = data.session.user;
   } catch (error) {
     console.log("error", error.message);
   }
+  const applications = await fetchApplicationDetailFromDB();
 
-  document.querySelector(".js-userName").innerHTML = user.full_name;
+  document.querySelector(".js-userName").innerHTML =
+    user.user_metadata.full_name;
 
-  // const userID = User.id;
+  const userID = user.id;
   let userApplication;
 
-  // applications.forEach((application) => {
-  //   if (userID === application.id) {
-  //     userApplication = application;
-  //   }
-  // });
+  applications.forEach((application) => {
+    if (userID === application.id) {
+      userApplication = application;
+    }
+  });
 
   if (userApplication) {
     const applicationDate = userApplication.created_at;

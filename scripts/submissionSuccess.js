@@ -1,13 +1,27 @@
-import { fetchApplicationDetailFromDB } from "../backend/database.js";
+import {
+  fetchApplicationDetailFromDB,
+  checkAuthentication,
+} from "../backend/database.js";
 
 document.addEventListener("DOMContentLoaded", async () => {
+  let user;
+
+  try {
+    const data = await checkAuthentication();
+
+    if (data.session == null) {
+      window.location.href = "studentsLogin.html";
+    }
+    user = data.session.user;
+  } catch (error) {
+    console.log("error", error.message);
+  }
   const applications = await fetchApplicationDetailFromDB();
 
-  const User = JSON.parse(localStorage.getItem("User"));
   let userApplication;
 
   applications.forEach((application) => {
-    if (User.id === application.id) {
+    if (user.id === application.id) {
       userApplication = application;
     }
   });

@@ -72,6 +72,8 @@ export async function saveApplicationToDB(
 
   if (error) {
     throw error;
+  } else {
+    return true;
   }
 }
 

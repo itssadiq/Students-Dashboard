@@ -1,6 +1,6 @@
 import {
   saveApplicationToDB,
-  fetchApplicationDetailFromDB,
+  checkAuthentication,
 } from "../backend/database.js";
 
 document.addEventListener("DOMContentLoaded", async () => {
@@ -18,11 +18,22 @@ document.addEventListener("DOMContentLoaded", async () => {
   const program1El = document.getElementById("program1");
   const program2El = document.getElementById("program2");
 
-  const User = JSON.parse(localStorage.getItem("User"));
+  let user;
 
-  const id = User.id;
+  try {
+    const data = await checkAuthentication();
 
-  document.querySelector("form").addEventListener("submit", (event) => {
+    if (data.session == null) {
+      window.location.href = "studentsLogin.html";
+    }
+    user = data.session.user;
+  } catch (error) {
+    console.log("error", error.message);
+  }
+
+  const id = user.id;
+
+  document.querySelector("form").addEventListener("submit", async (event) => {
     event.preventDefault();
 
     const form = event.target;
@@ -43,8 +54,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
     if (form.checkValidity()) {
       try {
-        console.log("successfull");
-        saveApplicationToDB(
+        const name = await saveApplicationToDB(
           id,
           full_name,
           father_name,
@@ -61,7 +71,9 @@ document.addEventListener("DOMContentLoaded", async () => {
           program_2
         );
 
-        window.location.href = "./submissionSuccess.html";
+        if (name) {
+          window.location.href = "./submissionSuccess.html";
+        }
       } catch (error) {
         console.error("Error submitting data:", error);
       }
