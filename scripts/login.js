@@ -23,7 +23,7 @@ async function userLogin(emailElement, passwordElement) {
     loginDetails = await signInUser(email, password);
 
     if (loginDetails.session) {
-      window.location.href = "studentsdashboard.html";
+      window.location.href = "studentsDashboard.html";
     }
   } catch (error) {
     console.log("error", error.message);
